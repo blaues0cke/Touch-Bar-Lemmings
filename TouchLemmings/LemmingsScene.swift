@@ -36,8 +36,18 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
         addChild(effect)
         
         
+        let rect2 = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 2170, height: 69));
+        
+        rect2.fillColor = .white
+        effect.addChild(rect2)
+        
+        
+        
         rect.fillColor = .green
         effect.addChild(rect)
+        
+        
+        
         
 //        self.isUserInteractionEnabled = true;
         
@@ -68,25 +78,37 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
                 let location = CGPoint(x: touch.location(in: self.view).x, y: 14)
                 
     
+                let percent = location.x / self.frame.size.width
                 
-                let color1 = NSColor.red
+                
+                var color1 = NSColor.green
 
-                let color2 = NSColor.green
-
+                var color2 = NSColor.red
+                
+                var alphaOfProfress = 0.0
                 
                 
+                var centerDiffY = abs(percent - 0.5)
+                
+              
+                    alphaOfProfress = Double(centerDiffY * 2);
+                    
+                     print("move", percent, alphaOfProfress, centerDiffY);
+                    
+              
                 
                 // tb width: 2170;
                 
-                let percent = location.x / self.frame.size.width
+                let alpha = CGFloat(alphaOfProfress);
+              
                 
-                            print("move", percent);
+                print("alpua", alpha)
                 
                 let resultRed = color1.redComponent + percent * (color2.redComponent - color1.redComponent);
                 let resultGreen = color1.greenComponent + percent * (color2.greenComponent - color1.greenComponent);
                 let resultBlue = color1.blueComponent + percent * (color2.blueComponent - color1.blueComponent);
                 
-                let myColor = NSColor(calibratedRed: resultRed, green: resultGreen, blue: resultBlue, alpha: 1.0)
+                let myColor = NSColor(calibratedRed: resultRed, green: resultGreen, blue: resultBlue, alpha: alpha)
                 
                 
             
