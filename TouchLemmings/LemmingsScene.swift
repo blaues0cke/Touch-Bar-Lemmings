@@ -108,6 +108,10 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
             
             hearts.append(p);
             heartsOrbits.append(0);
+            
+            
+            
+            
 
         }
         /*
@@ -202,8 +206,13 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
                     alphaOfProfress = Double(centerDiffY * 2);
                     
                      print("move", percent, alphaOfProfress, centerDiffY);
-                    
-              
+                
+                
+                likeLabel.isHidden = percent > 0.5;
+                nopeLabel.isHidden = percent < 0.5;
+                
+                likeLabel.position = CGPoint(x: 642 + (100 - (100 * alphaOfProfress)), y: 1)
+               nopeLabel.position = CGPoint(x: 52 - (100 - (100 * alphaOfProfress)), y: 1)
                 
                 // tb width: 2170;
                 
