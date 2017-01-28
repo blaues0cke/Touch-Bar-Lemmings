@@ -22,6 +22,7 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
     
      let gravityField = SKFieldNode.radialGravityField()
     
+    let heartLimit = 100;
     
     
     
@@ -53,7 +54,7 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
         
         
         
-        rect.fillColor = .green
+        rect.fillColor = NSColor(calibratedRed: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
         effect.addChild(rect)
         
         
@@ -62,10 +63,12 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
     
         circle.position = CGPoint(x: self.frame.width / 2 + 10, y: self.frame.height / 2)
         circle.fillColor = NSColor.white
+        circle.physicsBody = SKPhysicsBody(circleOfRadius: 30)
+        circle.physicsBody?.isDynamic=false;
         addChild(circle)
         
         
-        for index in 0...20 {
+        for index in 0...heartLimit {
             
             
             
@@ -78,8 +81,8 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
            
             
             p.physicsBody = SKPhysicsBody(circleOfRadius: 15)
-            p.physicsBody?.isDynamic = true
-            p.physicsBody?.mass = 4.5
+            p.physicsBody?.isDynamic = !false
+            p.physicsBody?.mass = 220.1
             
             
             
@@ -116,14 +119,15 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
     }
 
     override func update(_ currentTime: TimeInterval) {
-        let dt: CGFloat = 1.0/60.0 //Delta Time
-        let period: CGFloat = 3 //Number of seconds it takes to complete 1 orbit.
+        let dt: CGFloat = 30.0/60.0 //Delta Time
+        let period: CGFloat = 500 //Number of seconds it takes to complete 1 orbit.
         let orbitPosition = circle.position //Point to orbit.
-        let orbitRadius = CGPoint(x: randomInRange(lo: 40, hi: 60), y: randomInRange(lo: 40, hi: 60)) //Radius of orbit.
+        let bla = randomInRange(lo: 30, hi: 90);
+        let orbitRadius = CGPoint(x: bla, y: bla) //Radius of orbit.
         
         
         
-        for index in 0...20 {
+        for index in 0...heartLimit {
             
             let heart = hearts[index];
     
@@ -205,6 +209,8 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
             
                 
                 rect.fillColor = myColor
+                
+                circle.position = location
                 
             }
         }
