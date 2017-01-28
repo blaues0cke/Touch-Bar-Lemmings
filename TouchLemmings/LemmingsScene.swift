@@ -43,13 +43,19 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
       if let touch = event.allTouches().first {
         let location = CGPoint(x: touch.location(in: self.view).x, y: 14)
 
+        
+        
+        
+        
+        
+        /*
         if let lemming = lemmingAt(point: location) {
           lemming.toggleState()
         }
         else {
           addLemming(at: location)
         }
-
+*/
       }
     }
   }
