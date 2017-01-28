@@ -41,7 +41,7 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
         
         self.physicsWorld.gravity =  CGVector(dx: 0, dy: 0)
         
-        let rect2 = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 2170, height: 69));
+        let rect2 = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 2170, height: 60));
         
         rect2.fillColor = .white
         effect.addChild(rect2)
@@ -60,15 +60,42 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
         addChild(circle)
         
         
+        for index in 1...20 {
+            let p = SKLabelNode(fontNamed: "Chalkduster")
+            p.text = "❤"
+            p.fontSize = 22
+            p.fontColor = SKColor.white
+            p.position = CGPoint(x: randomInRange(lo: 0, hi: 2170), y: randomInRange(lo: 0, hi: 60))
+            
+            
+            
+            
+            p.physicsBody = SKPhysicsBody(circleOfRadius: 15)
+            p.physicsBody?.isDynamic = true
+            p.physicsBody?.mass = 4.5
+            
+            
+            
+       //     p.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 30 * p.physicsBody!.mass))
+            
+            
+            addChild(p)
+            
+            print("gdsg", p.position);
+
+        }
+        
         
        
         gravityField.position = circle.position
-        gravityField.region = SKRegion(radius: 5000.0)
+        gravityField.region = SKRegion(size: CGSize(width: 2170, height: 60))//SKRegion(radius: 5000.0)
         gravityField.strength = 10.0
         gravityField.isEnabled = true
         addChild(gravityField)
         
 //        self.isUserInteractionEnabled = true;
+        
+        
         
         
        
@@ -89,6 +116,12 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
   func lemmingAt(point: CGPoint) -> Lemming? {
     return lemmings.filter { $0.contains(point) }.first
   }*/
+    
+    
+    func randomInRange(lo: Int, hi : Int) -> Int {
+        return lo + Int(arc4random_uniform(UInt32(hi - lo + 1)))
+    }
+    
     
     override func touchesMoved(with event: NSEvent) {
         if #available(OSX 10.12.2, *) {
@@ -143,16 +176,8 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
       if let touch = event.allTouches().first {
        let location = CGPoint(x: touch.location(in: self.view).x, y: 14)
 
-        let p = SKSpriteNode(color: NSColor.purple, size: CGSize(width: 20, height: 20))
-        p.physicsBody = SKPhysicsBody(rectangleOf: p.size)
-        p.physicsBody?.isDynamic = true
-        p.physicsBody?.mass = 2.5
-       
+       //let p = SKSpriteNode(color: NSColor.purple, size: CGSize(width: 20, height: 20))
         
-        addChild(p)
-        
-        p.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 300 * p.physicsBody!.mass))
-
         
         print("Log");
         
