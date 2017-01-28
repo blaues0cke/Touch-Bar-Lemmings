@@ -10,8 +10,12 @@ import SpriteKit
 
 class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
 
-  var lemmings = [Lemming]()
-
+ // var lemmings = [Lemming]()
+    
+    
+    
+    
+/*
   func didBegin(_ contact: SKPhysicsContact) {
     if let lemmingA = contact.bodyA.node as? Lemming,
       let lemmingB = contact.bodyB.node as? Lemming {
@@ -24,9 +28,23 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
         lemmingB.state = .walking(direction: direction.theOtherDirection())
       }
     }
-  }
+  }*/
+    
+    override func didMove(to view: SKView) {
+        let effect = SKEffectNode()
+        addChild(effect)
+        
+        let rect = SKShapeNode(rect: self.frame)
+        rect.fillColor = .green
+        effect.addChild(rect)
+        
+        
+        
+        
+        
+    }
 
-  func addLemming(at: CGPoint) {
+  /*func addLemming(at: CGPoint) {
     let l = Lemming()
     scene?.addChild(l)
     l.position = at
@@ -36,13 +54,14 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
 
   func lemmingAt(point: CGPoint) -> Lemming? {
     return lemmings.filter { $0.contains(point) }.first
-  }
+  }*/
 
   override func touchesBegan(with event: NSEvent) {
     if #available(OSX 10.12.2, *) {
       if let touch = event.allTouches().first {
-        let location = CGPoint(x: touch.location(in: self.view).x, y: 14)
+       // let location = CGPoint(x: touch.location(in: self.view).x, y: 14)
 
+        
         
         
         
