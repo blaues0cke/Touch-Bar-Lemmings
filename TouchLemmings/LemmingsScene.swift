@@ -16,6 +16,10 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
     let effect = SKEffectNode();
     let rect = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 2170, height: 69));
     
+    let circle = SKShapeNode(circleOfRadius: 30.0)
+    
+     let gravityField = SKFieldNode.radialGravityField()
+    
 /*
   func didBegin(_ contact: SKPhysicsContact) {
     if let lemmingA = contact.bodyA.node as? Lemming,
@@ -48,6 +52,20 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
         
         
         
+        
+    
+        circle.position = CGPoint(x: self.frame.width / 2 + 10, y: self.frame.height / 2)
+        circle.fillColor = NSColor.white
+        addChild(circle)
+        
+        
+        
+       
+        gravityField.position = circle.position
+        gravityField.region = SKRegion(radius: 100.0)
+        gravityField.strength = 4.0
+        gravityField.isEnabled = true
+        addChild(gravityField)
         
 //        self.isUserInteractionEnabled = true;
         
