@@ -39,6 +39,7 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
     
         addChild(effect)
         
+        self.physicsWorld.gravity =  CGVector(dx: 0, dy: 0)
         
         let rect2 = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 2170, height: 69));
         
@@ -62,8 +63,8 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
         
        
         gravityField.position = circle.position
-        gravityField.region = SKRegion(radius: 100.0)
-        gravityField.strength = 4.0
+        gravityField.region = SKRegion(radius: 5000.0)
+        gravityField.strength = 10.0
         gravityField.isEnabled = true
         addChild(gravityField)
         
@@ -140,9 +141,18 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
   override func touchesBegan(with event: NSEvent) {
     if #available(OSX 10.12.2, *) {
       if let touch = event.allTouches().first {
-       // let location = CGPoint(x: touch.location(in: self.view).x, y: 14)
+       let location = CGPoint(x: touch.location(in: self.view).x, y: 14)
 
+        let p = SKSpriteNode(color: NSColor.purple, size: CGSize(width: 20, height: 20))
+        p.physicsBody = SKPhysicsBody(rectangleOf: p.size)
+        p.physicsBody?.isDynamic = true
+        p.physicsBody?.mass = 2.5
+       
         
+        addChild(p)
+        
+        p.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 300 * p.physicsBody!.mass))
+
         
         print("Log");
         
