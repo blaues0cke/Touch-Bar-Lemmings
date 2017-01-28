@@ -25,6 +25,7 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
     let heartLimit = 100;
     
     let nopeLabel = SKLabelNode(fontNamed: "Helvetica")
+    let likeLabel = SKLabelNode(fontNamed: "Helvetica")
     
     
 /*
@@ -67,7 +68,11 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
         addChild(nopeLabel)
         
         
-        
+        likeLabel.text = "LIKE"
+        likeLabel.fontSize = 36
+        likeLabel.fontColor = SKColor.white
+        likeLabel.position = CGPoint(x: 642, y: 1)
+        addChild(likeLabel)
     
         circle.position = CGPoint(x: self.frame.width / 2 + 10, y: self.frame.height / 2)
         circle.fillColor = NSColor.white
