@@ -13,7 +13,8 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
  // var lemmings = [Lemming]()
     
     
-    
+    let effect = SKEffectNode();
+    let rect = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 2170, height: 69));
     
 /*
   func didBegin(_ contact: SKPhysicsContact) {
@@ -31,10 +32,10 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
   }*/
     
     override func didMove(to view: SKView) {
-        let effect = SKEffectNode()
+    
         addChild(effect)
         
-        let rect = SKShapeNode(rect: self.frame)
+        
         rect.fillColor = .green
         effect.addChild(rect)
         
@@ -68,12 +69,30 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
                 
     
                 
+                let color1 = NSColor.red
+
+                let color2 = NSColor.green
+
+                
+                
                 
                 // tb width: 2170;
                 
                 let percent = location.x / self.frame.size.width
                 
                             print("move", percent);
+                
+                let resultRed = color1.redComponent + percent * (color2.redComponent - color1.redComponent);
+                let resultGreen = color1.greenComponent + percent * (color2.greenComponent - color1.greenComponent);
+                let resultBlue = color1.blueComponent + percent * (color2.blueComponent - color1.blueComponent);
+                
+                let myColor = NSColor(calibratedRed: resultRed, green: resultGreen, blue: resultBlue, alpha: 1.0)
+                
+                
+            
+                
+                rect.fillColor = myColor
+                
             }
         }
     }
