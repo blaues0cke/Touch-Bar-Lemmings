@@ -24,6 +24,10 @@ class LemmingsCanvas: SKView {
   override func touchesBegan(with event: NSEvent) {
     scene?.touchesBegan(with: event)
   }
+    
+    override func touchesMoved(with event: NSEvent) {
+            scene?.touchesMoved(with: event)
+    }
 
 
 }

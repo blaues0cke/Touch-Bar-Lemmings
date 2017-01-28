@@ -38,6 +38,7 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
         rect.fillColor = .green
         effect.addChild(rect)
         
+//        self.isUserInteractionEnabled = true;
         
         
         
@@ -55,6 +56,10 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
   func lemmingAt(point: CGPoint) -> Lemming? {
     return lemmings.filter { $0.contains(point) }.first
   }*/
+    
+    override func touchesMoved(with event: NSEvent) {
+         print("move");
+    }
 
   override func touchesBegan(with event: NSEvent) {
     if #available(OSX 10.12.2, *) {
@@ -63,7 +68,7 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
 
         
         
-        
+        print("Log");
         
         
         
