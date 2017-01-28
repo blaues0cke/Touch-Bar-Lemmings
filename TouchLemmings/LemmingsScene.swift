@@ -24,6 +24,7 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
     
     let heartLimit = 100;
     
+    let nopeLabel = SKLabelNode(fontNamed: "Helvetica")
     
     
 /*
@@ -57,6 +58,13 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
         rect.fillColor = NSColor(calibratedRed: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
         effect.addChild(rect)
         
+        
+        
+        nopeLabel.text = "NOPE"
+        nopeLabel.fontSize = 36
+        nopeLabel.fontColor = SKColor.white
+        nopeLabel.position = CGPoint(x: 52, y: 1)
+        addChild(nopeLabel)
         
         
         
