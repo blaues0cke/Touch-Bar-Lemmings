@@ -41,6 +41,9 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
 //        self.isUserInteractionEnabled = true;
         
         
+       
+        
+        
         
         
     }
@@ -58,7 +61,21 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
   }*/
     
     override func touchesMoved(with event: NSEvent) {
-         print("move");
+        if #available(OSX 10.12.2, *) {
+            if let touch = event.allTouches().first {
+
+                let location = CGPoint(x: touch.location(in: self.view).x, y: 14)
+                
+    
+                
+                
+                // tb width: 2170;
+                
+                let percent = location.x / self.frame.size.width
+                
+                            print("move", percent);
+            }
+        }
     }
 
   override func touchesBegan(with event: NSEvent) {

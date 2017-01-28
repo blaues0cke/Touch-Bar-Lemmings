@@ -9,6 +9,10 @@
 import Cocoa
 import SpriteKit
 
+
+
+
+
 class LemmingsCanvas: SKView {
 
   override func awakeFromNib() {
@@ -26,6 +30,8 @@ class LemmingsCanvas: SKView {
   }
     
     override func touchesMoved(with event: NSEvent) {
+        
+        
             scene?.touchesMoved(with: event)
     }
 
