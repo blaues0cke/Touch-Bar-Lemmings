@@ -75,7 +75,7 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
         addChild(likeLabel)
     
         circle.position = CGPoint(x: self.frame.width / 2 + 10, y: self.frame.height / 2)
-        circle.fillColor = NSColor.white
+        circle.fillColor = NSColor.black
         circle.physicsBody = SKPhysicsBody(circleOfRadius: 30)
         circle.physicsBody?.isDynamic=false;
         addChild(circle)
@@ -104,7 +104,7 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
             
             addChild(p)
             
-            print("gdsg", p.position);
+         //   print("gdsg", p.position);
             
             hearts.append(p);
             heartsOrbits.append(0);
