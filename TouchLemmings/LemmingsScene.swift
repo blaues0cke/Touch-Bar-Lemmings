@@ -10,8 +10,10 @@ import SpriteKit
 
 class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
 
- // var lemmings = [Lemming]()
+    // var lemmings = [Lemming]()
+    var hearts = [SKLabelNode]()
     
+    var heartsOrbits = [CGFloat]()
     
     let effect = SKEffectNode();
     let rect = SKShapeNode(rect: CGRect(x: 0, y: 0, width: 2170, height: 69));
@@ -19,6 +21,9 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
     let circle = SKShapeNode(circleOfRadius: 30.0)
     
      let gravityField = SKFieldNode.radialGravityField()
+    
+    
+    
     
 /*
   func didBegin(_ contact: SKPhysicsContact) {
@@ -60,15 +65,17 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
         addChild(circle)
         
         
-        for index in 1...20 {
+        for index in 0...20 {
+            
+            
+            
             let p = SKLabelNode(fontNamed: "Chalkduster")
             p.text = "❤"
             p.fontSize = 22
             p.fontColor = SKColor.white
             p.position = CGPoint(x: randomInRange(lo: 0, hi: 2170), y: randomInRange(lo: 0, hi: 60))
-            
-            
-            
+          
+           
             
             p.physicsBody = SKPhysicsBody(circleOfRadius: 15)
             p.physicsBody?.isDynamic = true
@@ -82,16 +89,19 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
             addChild(p)
             
             print("gdsg", p.position);
+            
+            hearts.append(p);
+            heartsOrbits.append(0);
 
         }
-        
+        /*
         
        
         gravityField.position = circle.position
         gravityField.region = SKRegion(size: CGSize(width: 2170, height: 60))//SKRegion(radius: 5000.0)
         gravityField.strength = 10.0
         gravityField.isEnabled = true
-        addChild(gravityField)
+    addChild(gravityField)*/
         
 //        self.isUserInteractionEnabled = true;
         
@@ -105,6 +115,35 @@ class LemmmingsScene: SKScene, SKPhysicsContactDelegate {
         
     }
 
+    override func update(_ currentTime: TimeInterval) {
+        let dt: CGFloat = 1.0/60.0 //Delta Time
+        let period: CGFloat = 3 //Number of seconds it takes to complete 1 orbit.
+        let orbitPosition = circle.position //Point to orbit.
+        let orbitRadius = CGPoint(x: randomInRange(lo: 40, hi: 60), y: randomInRange(lo: 40, hi: 60)) //Radius of orbit.
+        
+        
+        
+        for index in 0...20 {
+            
+            let heart = hearts[index];
+    
+            
+            var angle = heartsOrbits[index];
+            
+            let normal = CGVector(dx:orbitPosition.x + CGFloat(cos(angle))*orbitRadius.x ,dy:orbitPosition.y + CGFloat(sin(angle))*orbitRadius.y);
+            angle += (CGFloat(M_PI)*2.0)/period*dt;
+            if (fabs(angle)>CGFloat(M_PI)*2)
+            {
+                angle = 0
+            }
+            heart.physicsBody!.velocity = CGVector(dx:(normal.dx-heart.position.x)/dt ,dy:(normal.dy-heart.position.y)/dt);
+            
+            heartsOrbits[index] = angle;
+            
+        }
+        
+    }
+    
   /*func addLemming(at: CGPoint) {
     let l = Lemming()
     scene?.addChild(l)
